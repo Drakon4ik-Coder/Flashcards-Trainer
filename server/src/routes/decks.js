@@ -14,7 +14,7 @@ router.post('/decks', (req, res) => {
     });
     const parsed = DeckSchema.safeParse(req.body);
     if (!parsed.success) return res.status(400).json({error: 'Invalid deck name'});
-    const {name} = parsed.data.name;
+    const {name} = parsed.data;
     const info = db.prepare("INSERT INTO decks (user_id, name) VALUES (?, ?)").run(req.user.id, name);
     const deck = db.prepare("SELECT * FROM decks WHERE id = ?").get(info.lastInsertRowid);
     res.status(201).json({deck});

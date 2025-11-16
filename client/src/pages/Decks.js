@@ -14,7 +14,8 @@ export default function Decks() {
     setError("");
     try {
       const data = await api("/api/decks");
-      setDecks(data);
+      console.log("GET /api/decks response:", data);
+      setDecks(Array.isArray(data.decks) ? data.decks : []);
     } catch (e) {
       setError(e.message);
     } finally {
@@ -33,10 +34,10 @@ export default function Decks() {
     setError("");
 
     try {
-      const deck = await api("/api/decks", {
+      const deck = (await api("/api/decks", {
         method: "POST",
         body: JSON.stringify({ name }),
-      });
+      })).deck;
       setDecks(prev => [deck, ...prev]); // add new at top
       setName("");
     } catch (e) {

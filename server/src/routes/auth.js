@@ -54,7 +54,7 @@ router.post("/auth/login", async (req, res) => {
     if (!parsed.success) return res.status(400).json({ error: "Invalid email or password" });
     
     const { email, password } = parsed.data;
-    const user = db.prepare("SELECT id, email, password_hash, created_at FROM users WHERE email = ?").get(email);
+    let user = db.prepare("SELECT id, email, password_hash, created_at FROM users WHERE email = ?").get(email);
     if (!user) return res.status(401).json({ error: "Invalid email or password" });
     const validPassword = await bcrypt.compare(password, user.password_hash);
     if (!validPassword) return res.status(401).json({ error: "Invalid email or password" });
