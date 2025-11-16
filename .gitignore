@@ -3,3 +3,4 @@ client/node_modules
 server/.env
 server/flashcards.db
 server/package-lock.json
+client/package-lock.json
