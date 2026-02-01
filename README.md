@@ -65,8 +65,13 @@ npm start
 
 Client starts on http://localhost:3000
 
+## Branding & Screenshots
+Replace the placeholder image in `docs/screenshot.svg` with a real UI screenshot when available.
+
+![Flashcards Trainer UI](docs/screenshot.svg)
+
 ## CORS / Dev Port Note
-The server currently allows requests from `http://localhost:5173` in CORS. If you run the CRA client on `http://localhost:3000`, update the server CORS origin in `server/src/index.js` or run the client on port 5173.
+The server allows requests from `http://localhost:3000` in CORS. If you run the client on a different port, update the CORS origin in `server/src/index.js`.
 
 ## API Endpoints
 
