@@ -66,9 +66,7 @@ npm start
 Client starts on http://localhost:3000
 
 ## Branding & Screenshots
-Replace the placeholder image in `docs/screenshot.svg` with a real UI screenshot when available.
-
-![Flashcards Trainer UI](docs/screenshot.svg)
+![Flashcards Trainer UI](docs/screenshot.png)
 
 ## CORS / Dev Port Note
 The server allows requests from `http://localhost:3000` in CORS. If you run the client on a different port, update the CORS origin in `server/src/index.js`.

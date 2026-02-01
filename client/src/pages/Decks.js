@@ -8,6 +8,7 @@ export default function Decks() {
   const [loading, setLoading] = useState(false);
   const [loadingList, setLoadingList] = useState(false);
   const [error, setError] = useState("");
+  const [deletingIds, setDeletingIds] = useState(() => new Set());
 
   async function loadDecks() {
     setLoadingList(true);
@@ -44,6 +45,28 @@ export default function Decks() {
       setError(e.message);
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function handleDelete(id) {
+    setError("");
+    setDeletingIds(prev => {
+      const next = new Set(prev);
+      next.add(id);
+      return next;
+    });
+
+    try {
+      await api(`/api/decks/${id}`, { method: "DELETE" });
+      setDecks(prev => prev.filter(deck => deck.id !== id));
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setDeletingIds(prev => {
+        const next = new Set(prev);
+        next.delete(id);
+        return next;
+      });
     }
   }
 
@@ -87,7 +110,17 @@ export default function Decks() {
               style={{ animationDelay: `${index * 60}ms` }}
             >
               <span className="deck-name">{deck.name}</span>
-              <span className="status-text">Ready</span>
+              <div className="deck-actions">
+                <span className="status-text">Ready</span>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => handleDelete(deck.id)}
+                  disabled={deletingIds.has(deck.id)}
+                  type="button"
+                >
+                  {deletingIds.has(deck.id) ? "Deleting..." : "Delete"}
+                </button>
+              </div>
             </li>
           ))}
         </ul>

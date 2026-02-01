@@ -133,6 +133,18 @@ a {
   box-shadow: 0 12px 20px rgba(20, 22, 34, 0.08);
 }
 
+.btn-danger {
+  background: #fff1f0;
+  color: #b42318;
+  border: 1px solid #ffd6d1;
+  box-shadow: none;
+}
+
+.btn-danger:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 20px rgba(180, 35, 24, 0.15);
+}
+
 .app-main {
   flex: 1;
   padding: 2rem 1.5rem 3rem;
@@ -246,6 +258,12 @@ a {
   align-items: center;
   background: #fff;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.deck-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .deck-item:hover {
