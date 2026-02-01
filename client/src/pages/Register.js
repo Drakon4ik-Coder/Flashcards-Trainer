@@ -28,15 +28,16 @@ export default function Register({ onRegister }) {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{ display: "grid", gap: 12, maxWidth: 360, margin: "2rem auto" }}
-    >
-      <h2>Register</h2>
+    <form onSubmit={handleSubmit} className="card form-card fade-up">
+      <div>
+        <h2>Create your account</h2>
+        <p>Start a fresh deck set in minutes.</p>
+      </div>
 
-      <label>
+      <label className="field">
         Email
         <input
+          className="input"
           type="email"
           value={email}
           onChange={e => setEmail(e.target.value)}
@@ -44,9 +45,10 @@ export default function Register({ onRegister }) {
         />
       </label>
 
-      <label>
+      <label className="field">
         Password
         <input
+          className="input"
           type="password"
           value={password}
           onChange={e => setPassword(e.target.value)}
@@ -54,11 +56,11 @@ export default function Register({ onRegister }) {
         />
       </label>
 
-      <button disabled={loading || !email || !password}>
+      <button className="btn btn-primary" disabled={loading || !email || !password}>
         {loading ? "Creating account…" : "Register"}
       </button>
 
-      {error && <p style={{ color: "crimson" }}>Error: {error}</p>}
+      {error && <p className="form-error">Error: {error}</p>}
     </form>
   );
 }

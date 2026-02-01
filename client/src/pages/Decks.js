@@ -48,52 +48,50 @@ export default function Decks() {
   }
 
   return (
-    <div style={{ maxWidth: 600, margin: "2rem auto" }}>
-      <h2>Your decks</h2>
+    <section className="card content-shell fade-up">
+      <div className="section-head">
+        <div>
+          <h2 className="section-title">Your decks</h2>
+          <p className="section-subtitle">Organize topics you want to master.</p>
+        </div>
+        <div className="count-pill">{decks.length} decks</div>
+      </div>
 
-      <form
-        onSubmit={handleCreate}
-        style={{ display: "grid", gap: 8, marginBottom: 24 }}
-      >
-        <label>
+      <form onSubmit={handleCreate} className="deck-form">
+        <label className="field">
           New deck name
           <input
+            className="input"
             value={name}
             onChange={e => setName(e.target.value)}
             placeholder="e.g. Spanish A1"
           />
         </label>
-        <button disabled={loading || !name.trim()}>
+        <button className="btn btn-primary" disabled={loading || !name.trim()}>
           {loading ? "Creating…" : "Create deck"}
         </button>
       </form>
 
-      {error && <p style={{ color: "crimson" }}>Error: {error}</p>}
+      {error && <p className="form-error">Error: {error}</p>}
 
       {loadingList ? (
-        <p>Loading decks…</p>
+        <p className="status-text">Loading decks…</p>
       ) : decks.length === 0 ? (
-        <p>No decks yet. Create your first one above.</p>
+        <p className="status-text">No decks yet. Create your first one above.</p>
       ) : (
-        <ul style={{ listStyle: "none", padding: 0, display: "grid", gap: 8 }}>
-          {decks.map(deck => (
+        <ul className="deck-list">
+          {decks.map((deck, index) => (
             <li
               key={deck.id}
-              style={{
-                padding: 10,
-                borderRadius: 8,
-                border: "1px solid #ddd",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
+              className="deck-item fade-up"
+              style={{ animationDelay: `${index * 60}ms` }}
             >
-              <span>{deck.name}</span>
-              {/* You can add buttons for detail/delete later */}
+              <span className="deck-name">{deck.name}</span>
+              <span className="status-text">Ready</span>
             </li>
           ))}
         </ul>
       )}
-    </div>
+    </section>
   );
 }

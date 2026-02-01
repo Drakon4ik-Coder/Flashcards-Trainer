@@ -1,13 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light;
+  --ink: #141622;
+  --muted: #5c6476;
+  --brand: #ff6b4a;
+  --brand-strong: #ff4f2c;
+  --brand-2: #18b5a8;
+  --brand-3: #f7b733;
+  --surface: #ffffff;
+  --surface-soft: rgba(255, 255, 255, 0.86);
+  --border: #e0e5f2;
+  --shadow: 0 12px 30px rgba(16, 24, 40, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Work Sans", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(24, 181, 168, 0.18), transparent 45%),
+    radial-gradient(circle at 90% 15%, rgba(247, 183, 51, 0.18), transparent 40%),
+    linear-gradient(180deg, #f8f9fd 0%, #eef2f7 100%);
+  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+  color: inherit;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2.5rem;
+  background: var(--surface-soft);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-mark {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: linear-gradient(135deg, var(--brand-2), var(--brand));
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(24, 181, 168, 0.35);
+}
+
+.brand-title {
+  margin: 0;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  font-size: 1.5rem;
+}
+
+.brand-subtitle {
+  margin: 0.1rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.user-pill {
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(24, 181, 168, 0.12);
+  color: #0b6f66;
+  font-size: 0.85rem;
+}
+
+.btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.55rem 1.2rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--brand), var(--brand-strong));
+  color: #fff;
+  box-shadow: 0 12px 22px rgba(255, 107, 74, 0.32);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 30px rgba(255, 107, 74, 0.38);
+}
+
+.btn-ghost {
+  background: #fff;
+  border: 1px solid var(--border);
+  color: var(--ink);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 20px rgba(20, 22, 34, 0.08);
+}
+
+.app-main {
+  flex: 1;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.card {
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(224, 229, 242, 0.7);
+}
+
+.form-card {
+  max-width: 440px;
+  margin: 2.5rem auto 0;
+  display: grid;
+  gap: 1.2rem;
+}
+
+.form-card h2 {
+  margin: 0;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  font-size: 1.75rem;
+}
+
+.form-card p {
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+}
+
+.field {
+  display: grid;
+  gap: 0.45rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.input {
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: rgba(24, 181, 168, 0.6);
+  box-shadow: 0 0 0 3px rgba(24, 181, 168, 0.18);
+}
+
+.form-error {
+  margin: 0;
+  color: #b42318;
+  background: #fff1f0;
+  border: 1px solid #ffd6d1;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.section-title {
+  margin: 0;
+  font-size: 1.6rem;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+}
+
+.section-subtitle {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+}
+
+.count-pill {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(247, 183, 51, 0.2);
+  color: #9a5d00;
+  font-weight: 600;
+}
+
+.deck-form {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.deck-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.deck-item {
+  border-radius: 16px;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.deck-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px rgba(20, 22, 34, 0.1);
+}
+
+.deck-name {
+  font-weight: 600;
+}
+
+.status-text {
+  color: var(--muted);
+}
+
+.status-center {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.content-shell {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.fade-up {
+  animation: fadeUp 0.6s ease both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 720px) {
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .nav-actions {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .section-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

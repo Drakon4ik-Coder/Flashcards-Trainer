@@ -36,39 +36,39 @@ function App() {
   }
 
   if (checkingAuth) {
-    return <p style={{ textAlign: "center", marginTop: "2rem" }}>Loading…</p>;
+    return <p className="status-text status-center">Loading…</p>;
   }
 
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif" }}>
-      <header
-        style={{
-          padding: "1rem 2rem",
-          borderBottom: "1px solid #eee",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <h1 style={{ margin: 0, fontSize: "1.5rem" }}>Flashcards</h1>
+    <div className="app">
+      <header className="app-header">
+        <div className="brand">
+          <div className="logo-mark">FT</div>
+          <div>
+            <h1 className="brand-title">Flashcards Trainer</h1>
+            <p className="brand-subtitle">Build decks. Remember more.</p>
+          </div>
+        </div>
 
-        <nav style={{ display: "flex", gap: 12, alignItems: "center" }}>
+        <nav className="nav-actions">
           {user ? (
             <>
-              <span style={{ fontSize: "0.9rem", opacity: 0.8 }}>
-                {user.email}
-              </span>
-              <button onClick={handleLogout}>Logout</button>
+              <span className="user-pill">{user.email}</span>
+              <button className="btn btn-ghost" onClick={handleLogout}>
+                Logout
+              </button>
             </>
           ) : (
             <>
               <button
+                className="btn btn-ghost"
                 onClick={() => setPage("login")}
                 disabled={page === "login"}
               >
                 Login
               </button>
               <button
+                className="btn btn-primary"
                 onClick={() => setPage("register")}
                 disabled={page === "register"}
               >
@@ -79,7 +79,7 @@ function App() {
         </nav>
       </header>
 
-      <main>
+      <main className="app-main">
         {!user ? (
           page === "register" ? (
             <Register onRegister={handleLoggedIn} />
